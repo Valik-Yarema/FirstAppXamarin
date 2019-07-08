@@ -155,6 +155,7 @@
                                Grid.Row="4"
                             />
                 <ImageButton x:Name="Person"
+                             Clicked="ToProfilePage"
                              BackgroundColor="White"
                              Grid.Column="4"
                                Grid.Row="4"

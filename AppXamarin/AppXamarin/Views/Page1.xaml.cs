@@ -1,5 +1,6 @@
 ﻿using AppXamarin.Models.DB;
 using AppXamarin.ViewModels.PostViewModels;
+using AppXamarin.Views;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -71,8 +72,9 @@ namespace AppXamarin
                      img.Source = ImageSource.FromFile(file.Path);
                  }
              };
-           
           
+
+
 
         }
 
@@ -98,6 +100,13 @@ namespace AppXamarin
             
 
         }
-
+        private async void BackButtonClick(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
+        }
+        private async void ToProfilePage(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Profile());
+        }
     }
 }
