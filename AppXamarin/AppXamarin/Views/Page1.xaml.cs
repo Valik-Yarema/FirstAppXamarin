@@ -72,7 +72,23 @@ namespace AppXamarin
                      img.Source = ImageSource.FromFile(file.Path);
                  }
              };
-          
+            IconInstagram.Tapped += async (o, e) =>
+            {
+                if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    MediaFile file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                    {
+                        SaveToAlbum = true,
+                        Directory = "Sample",
+                        Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
+                    });
+
+                    if (file == null)
+                        return;
+
+                    img.Source = ImageSource.FromFile(file.Path);
+                }
+            };
 
 
 

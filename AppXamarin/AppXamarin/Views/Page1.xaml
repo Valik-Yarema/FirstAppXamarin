@@ -10,7 +10,7 @@
        
         <StackLayout>
 
-            <Grid Padding="0" ColumnSpacing="0" RowSpacing="1"  BackgroundColor="Gray">
+            <Grid Padding="0" ColumnSpacing="0" RowSpacing="1">
                 <Grid.RowDefinitions SeparatorVisibility="true" >
                     <RowDefinition Height="25" />
                     <RowDefinition Height="40"/>
@@ -56,22 +56,28 @@
 
                 </StackLayout>
 
-                            
-                    <controls1:CircleImage Source="icons8Instagram48.png" 
+
+                <controls1:CircleImage 
+                        Source="icons8Instagram48.png" 
                            Aspect="AspectFill"
                            WidthRequest="30"
                            HeightRequest="30"
                            BorderColor="LightPink"
                            BorderThickness="2"
                            Grid.Row="1"
+                           Grid.Column="0"
                            HorizontalOptions="Start">
-
-                    </controls1:CircleImage>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="IconInstagram"
+                            
+                                              NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </controls1:CircleImage>
                 
                 <StackLayout Orientation="Horizontal"
                              Spacing="5"
                              Grid.Row="1"
-                             Grid.ColumnSpan="5"
+                             Grid.ColumnSpan="4"
                              VerticalOptions="Center">
                     <ScrollView x:Name="ImageNews">
                     <controls1:CircleImage Source="{Binding Source}" 
@@ -91,8 +97,7 @@
                             Grid.ColumnSpan="5"
                             BackgroundColor="WhiteSmoke" 
                             HasUnevenRows="True"
-                          BindingContext="postviewmodels"
-                            
+                            ItemsSource="{Binding PostViewModels, Mode=TwoWay}"
                             >
                     <ListView.ItemTemplate>
                        
