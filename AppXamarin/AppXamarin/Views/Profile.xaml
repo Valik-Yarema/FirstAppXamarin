@@ -7,7 +7,7 @@
             <Label Text="Profile"
                 VerticalOptions="Start" 
                 HorizontalOptions="Center" />
-            <ImageButton Clicked="BackButtonClick"
+            <Image 
                          Source="icons8Home48.png" 
                          VerticalOptions="End" 
                          HorizontalOptions="Center"/>

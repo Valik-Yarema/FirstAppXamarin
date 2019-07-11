@@ -18,8 +18,7 @@ namespace AppXamarin.Models.DB
 
         public ICollection<Comment> Comments { get; set; }
         public ICollection<LikePost> LikePosts { get; set; }
-        //public ICollection<Image> Images { get; set; }
-        public ImageSource PostSource { get; set; }
+        public ICollection<string> Images { get; set; }
         public int Like { get; set; }
        
     }

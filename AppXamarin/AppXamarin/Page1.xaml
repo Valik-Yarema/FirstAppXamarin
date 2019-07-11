@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:controls1="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:carousel="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             x:Class="AppXamarin.Page1"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content   BackgroundColor="White">
+       
+        <StackLayout> 
+
+            <Grid Padding="0" ColumnSpacing="0" RowSpacing="1">
+                <Grid.RowDefinitions SeparatorVisibility="true" >
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+               
+                <StackLayout Orientation="Horizontal"
+                             Spacing="40"
+                             Grid.Row="0"
+                             Grid.ColumnSpan="5"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                            >
+                    <ImageButton x:Name="CameraTop"
+                             
+                              Clicked="CameraClick" 
+                              BackgroundColor="White"
+                              HorizontalOptions="Start"
+                          />
+                    <ImageButton  x:Name="InstagramText"
+                           
+                             Aspect="AspectFit"
+                             BackgroundColor="White"
+                             HorizontalOptions="Center"/>
+
+                    <ImageButton x:Name="MessageTop"
+                          
+                              BackgroundColor="White"
+                            
+                              HorizontalOptions="End"
+                           />
+
+
+                </StackLayout>
+
+
+                <controls1:CircleImage 
+                        Source="icons8Instagram48.png" 
+                           Aspect="AspectFill"
+                           WidthRequest="30"
+                           HeightRequest="30"
+                           BorderColor="LightPink"
+                           BorderThickness="2"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           HorizontalOptions="Start">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="IconInstagram"
+                            
+                                              NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </controls1:CircleImage>
+                
+                <StackLayout Orientation="Horizontal"
+                             Spacing="5"
+                             Grid.Row="1"
+                             Grid.ColumnSpan="4"
+                             VerticalOptions="Center">
+                    <ScrollView x:Name="ImageNews">
+                    <controls1:CircleImage Source="" 
+                                          Aspect="AspectFill" 
+                                          WidthRequest="30"
+                                           HeightRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                            Tapped="CameraClick"
+                            NumberOfTapsRequired="1" />
+                            </Image.GestureRecognizers>
+                        </controls1:CircleImage>
+                    </ScrollView>
+                </StackLayout>
+
+                <ListView Grid.Row="2" Grid.ColumnSpan="5"
+                          ItemsSource="{Binding Posts.NewPosts, Mode=TwoWay}"
+                          HasUnevenRows="True" 
+                      CachingStrategy="RecycleElement"
+                      SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="275" />
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <StackLayout Orientation="Horizontal"
+                                                 VerticalOptions="Center" 
+                                                 Margin="10,0,0,0"
+                                                 Spacing="0" >
+                                        <StackLayout VerticalOptions="Center" Spacing="0">
+                                            <Label Text="{Binding AuthorName}" TextColor="Black"/>
+                                        </StackLayout>
+                                        <Image Source="icons8Menu48.png" 
+                                               VerticalOptions="Center" 
+                                               HorizontalOptions="EndAndExpand" 
+                                               WidthRequest="20" Margin="0,0,10,0">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                               Tapped="SettingMenu"
+                                               NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                    <carousel:CarouselViewControl Orientation="Horizontal" 
+                                                                  Grid.Row="1"
+                                                                  InterPageSpacing="0"
+                                                                  ItemsSource="{Binding Images}"
+                                                                  ShowIndicators="True" 
+                                                                  PositionSelected="ChangePosition"
+                                                                  Position="0"
+                                                                  HeightRequest="275">
+                                        <carousel:CarouselViewControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Image Source="{Binding SourceImg}" 
+                                                           Aspect="AspectFill" 
+                                                           Grid.ColumnSpan="5"
+                                                           Grid.Row="0"
+                                                           Grid.RowSpan="5"
+                                                           HeightRequest="275"/>
+                                                  
+                                                    <controls1:CircleImage 
+                                                       Grid.Row="4"
+                                                       Source="icons8User100.png"
+                                                        VerticalOptions="End"
+                                                       HorizontalOptions="Start"
+                                                       WidthRequest="20"
+                                                       Opacity="0.8"
+                                                       BackgroundColor="Gray"
+                                                       Margin="10, 10, 10, 10"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </carousel:CarouselViewControl.ItemTemplate>
+                                    </carousel:CarouselViewControl>
+                                    
+                                    <StackLayout Orientation="Horizontal"
+                                                 HorizontalOptions="FillAndExpand" 
+                                                 Grid.Row="2"
+                                                 Margin="10,0,0,0">
+                                        <Image Source="{Binding LikeS}"
+                                               WidthRequest="20">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                               Tapped="LikeClick"
+                                               NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Image StyleId="Comments" 
+                                               Source="icons8SpeechBubble48.png" 
+                                               Margin="10,0,0,0" 
+                                               WidthRequest="20">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                               Tapped="CreatePage"
+                                               NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <ImageButton Source="icons8Telegram64.png"
+                                                     WidthRequest="20"
+                                                     BackgroundColor="White"
+                                                     Clicked="SharePost"
+                                                      Margin="10,0,0,0"
+                                              />
+
+                                        <Image Source="{Binding Bookmark}" 
+                                               WidthRequest="20" 
+                                               HorizontalOptions="EndAndExpand">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                               Tapped="AddBookmark"
+                                               NumberOfTapsRequired="1" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" 
+                                                 Grid.Row="3"
+                                                 Margin="10,0,10,0">
+                                        <Label Text="{Binding Like, StringFormat='liked {0:N0} people'}" 
+                                               FontSize="Small" 
+                                               TextColor="Black" 
+                                               />
+                                    </StackLayout>
+                                    <Label Text="{Binding NewsText}" 
+                                           Grid.Row="4" 
+                                           TextColor="Black"
+                                           FontSize="Micro" 
+                                           Margin="10,0,10,0"/>
+                                    <Label StyleId="Comments" 
+                                           Text="{Binding CommentCount, StringFormat='View all ({0}) comments'}"
+                                           TextColor="Gray" Grid.Row="5"
+                                           Margin="10,0,0,0">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                            Tapped="ViewComents"
+                                            NumberOfTapsRequired="1"/>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Entry Grid.Row="6" 
+                                           Margin="10,0,10,10" 
+                                           Placeholder="Comment..."
+                                           FontSize="Small" 
+                                           Keyboard="Chat"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+                <Image x:Name="HomeEnd"
+                             BackgroundColor="White"
+                             Grid.Column="0"
+                             Grid.Row="4"
+                            >
+                    <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="HomePage"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                
+                <Image x:Name="SearchEnd"
+                       StyleId="Search" 
+                       BackgroundColor="White"
+                       Grid.Column="1"
+                       Grid.Row="4"
+                      >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                            Tapped="CreatePage"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+                </Image>
+
+                <ImageButton x:Name="AddNewPost"
+                             Clicked="CameraClick"
+                             BackgroundColor="White"
+                             Grid.Column="2"
+                               Grid.Row="4"
+                             />
+           
+                <Image x:Name="LikeEnd"
+                       StyleId="Actions" 
+                       BackgroundColor="White"
+                       Grid.Column="3"
+                       Grid.Row="4">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="CreatePage"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <ImageButton x:Name="Person"
+                             Clicked="ToProfilePage"
+                             BackgroundColor="White"
+                             Grid.Column="4"
+                               Grid.Row="4"
+                            />
+              
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

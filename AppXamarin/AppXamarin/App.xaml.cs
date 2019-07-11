@@ -12,7 +12,7 @@ namespace AppXamarin
         public App()
         {
             InitializeComponent();
-            MainPage = new Page1();
+            MainPage = new NavigationPage(new Page1());
            
         }
 

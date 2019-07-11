@@ -2,17 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AppXamarin"
-             x:Class="AppXamarin.MainPage">
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            
+             x:Class="AppXamarin.MainPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content   BackgroundColor="White">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-       
-        <Label  HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" >
-            <Label.Text>
-                Main Page
-            </Label.Text>
-        </Label>
-    </StackLayout>
+        <StackLayout>
+            <Label Text="MainPage"/>
 
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
